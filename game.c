@@ -33,7 +33,9 @@ void *play_monopoly(void *results_lock) {
                     doubles += roll.doubles;
                     if (doubles >= 3) {
                         players[player].position = 10;
-                        if (INCLUDE_SEND_TO_JAIL) tile_landings[10]++;
+                        #ifdef INCLUDE_SEND_TO_JAIL
+                            tile_landings[10]++;
+                        #endif
                         break;
                     }
                     players[player].position = (players[player].position + roll.total) % 40;
