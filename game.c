@@ -33,8 +33,17 @@ void *play_monopoly(void *results_lock) {
             int player;
             for (player = 0; player < NUM_PLAYERS; player++) {
                 struct dice_t roll;
+                int doubles = 0;
                 do {
                     roll = roll_dice();
+                    doubles += roll.doubles;
+                    if (doubles >= 3) {
+                        players[player].position = 10;
+                        #ifdef INCLUDE_SEND_TO_JAIL
+                            tile_landings[10]++;
+                        #endif
+                        break;
+                    }
                     players[player].position = (players[player].position + roll.total) % 40;
                     tile_landings[players[player].position]++;
 
@@ -58,6 +67,7 @@ void *play_monopoly(void *results_lock) {
                         }
                     }
                 } while (roll.doubles);
+                
             }
         }
     }
