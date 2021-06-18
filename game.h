@@ -4,9 +4,10 @@
 #include <pthread.h>
 
 #define NUM_THREADS 12
-#define GAMES_PER_THREAD    1000
+#define GAMES_PER_THREAD    100
 #define MAX_ROUNDS_PER_GAME 100
 #define NUM_PLAYERS 4
+#define INCLUDE_SEND_TO_JAIL //comment out to disable
 
 void *play_monopoly(void *results_lock);
 const char tile_names[40][32];
