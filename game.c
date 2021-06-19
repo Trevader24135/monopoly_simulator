@@ -45,7 +45,7 @@ void *play_monopoly(void *results_lock) {
                     
                     players[player].position = (players[player].position + roll.total) % 40;
                     tile_landings[players[player].position]++;
-
+                    
                     if (players[player].position == 30) {
                         players[player].position = 10;
                         tile_landings[10]++;
